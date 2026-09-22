@@ -11,9 +11,10 @@
     <h2>Table of Contents</h2>
     <a href="#abstract">- Introduction & Abstract</a><br>
     <a href="#architecture">- Architecture & 6-Phase Pipeline</a><br>
+    <a href="#portals">- Two Distinct Portals (Borrower App vs Lender Console)</a><br>
     <a href="#req">- Requirements & Stack</a><br>
     <a href="#ins">- How to Use & Execution</a><br>
-    <a href="#preview">- Preview & Demo Workflows</a><br>
+    <a href="#preview">- Visual Walkthrough & Screenshots</a><br>
     <a href="#privacy">- DPDP Act 2023 & Cryptographic Guarantees</a><br>
 </div>
 <hr>
@@ -87,6 +88,41 @@
 </div>
 <hr>
 
+<div id="portals">
+    <h2>Two Distinct Dedicated Portals</h2>
+    <p>
+        EdgeScore is split into two specialized, purpose-built interfaces tailored to each stakeholder in the OCEN 4.0 ecosystem:
+    </p>
+
+    <h3>1. EdgeScore Merchant Mobile App (Borrower Portal)</h3>
+    <p>
+        <b>Target User:</b> Kirana store owners, tea stall operators, and informal micro-merchants.<br>
+        <b>Purpose:</b> Empowers thin-file borrowers to generate on-device credit scores from physical handwritten ledgers and transactional SMS in 100% offline Airplane Mode.
+    </p>
+    <ul>
+        <li><b>Airplane Mode Isolation:</b> Guarantees no internet calls during ingestion and calculation.</li>
+        <li><b>Ledger Camera HUD:</b> Real-time bounding box optical detection for Hindi/English Bahi-Khata registers.</li>
+        <li><b>Transactional SMS Categorizer:</b> Local regex parser classifying merchant QR credits, distributor outlays, and utility bills.</li>
+        <li><b>EdgeScore Hero Gauge:</b> Dynamic 300–900 credit scoring with pre-approved loan ceilings and risk categorization.</li>
+        <li><b>Hardware StrongBox TEE Signature:</b> ECDSA <code>secp256r1</code> signing with cryptographic tamper-proofing.</li>
+        <li><b>Live RAM Scrub Visualizer:</b> Real-time memory zeroing visualizer proving that 0 bytes of raw data remain on the phone.</li>
+    </ul>
+
+    <h3>2. OCEN 4.0 Lender Gateway (Bank & Underwriting Console)</h3>
+    <p>
+        <b>Target User:</b> Commercial Banks, NBFC Credit Officers, FIUs (Financial Information Users), and Hackathon Judges.<br>
+        <b>Purpose:</b> Verifies signed W3C credentials, conducts real-time DPDP Act privacy audits, and triggers instant 1-click UPI loan disbursements.
+    </p>
+    <ul>
+        <li><b>Real-Time Proof Stream:</b> WebSocket feed of incoming cryptographic credentials from field merchant devices.</li>
+        <li><b>Cryptographic Proof Inspector:</b> Validates ECDSA signatures against the merchant's hardware DID (<code>did:edgescore:iqoo-tee-...</code>) and confirms StrongBox TEE attestation level.</li>
+        <li><b>DPDP Act 2023 Privacy Differential:</b> Live privacy audit showing <b>0.00 Bytes leaked</b> compared to legacy scrapers (which leak ~14.8 MB of raw PII).</li>
+        <li><b>1-Click Loan Sanction & UPI Disbursement:</b> Generates instant loan sanction tokens (e.g. ₹35,000 facility with ₹389/day micro-debit) and triggers UPI AutoPay mandates.</li>
+        <li><b>Bahi-Khata Demo Kit & Pitch Script:</b> Embedded printable ledger samples and 3-minute hackathon walkthrough guide.</li>
+    </ul>
+</div>
+<hr>
+
 <div id="req">
     <h2>Requirements</h2>
     <ul>
@@ -147,38 +183,71 @@ node testAllMerchants.js
 <hr>
 
 <div id="preview">
-    <h2>Preview & Dedicated Port Architecture</h2>
+    <h2>Visual Walkthrough & Screenshots</h2>
+
+    <h3>Portal 1: EdgeScore Merchant Mobile App (6-Phase Pipeline)</h3>
+    <p>The native mobile flow guides the merchant through an atomic 6-phase underwriting process:</p>
     
     <table>
-        <thead>
-            <tr>
-                <th>Port / URL</th>
-                <th>Dedicated Flow</th>
-                <th>Target Persona</th>
-                <th>Key Features</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><b>http://localhost:8085/</b></td>
-                <td>Merchant Mobile App</td>
-                <td>Kirana / Micro-Borrower</td>
-                <td>6-Phase on-device pipeline, Airplane Mode audit, Bahi-Khata scan, SMS audit, TEE signing, RAM wipe.</td>
-            </tr>
-            <tr>
-                <td><b>http://localhost:3000/</b></td>
-                <td>OCEN 4.0 Lender Gateway</td>
-                <td>Bank Underwriter / FIU / Judge</td>
-                <td>Cryptographic W3C proof stream, DPDP 2023 differential audit (0 bytes leaked), 1-click UPI instant disbursement.</td>
-            </tr>
-            <tr>
-                <td><b>http://localhost:5005/</b></td>
-                <td>OCEN Relay Backend</td>
-                <td>System Infrastructure</td>
-                <td>WebSocket and REST synchronization between edge mobile devices and bank loan management systems.</td>
-            </tr>
-        </tbody>
+        <tr>
+            <td width="50%" align="center">
+                <b>Phase 1: Hardware TEE Attestation</b><br>
+                <img src="assets/mobile_step1_hardware.png" alt="Phase 1 Hardware Attestation" width="100%">
+            </td>
+            <td width="50%" align="center">
+                <b>Phase 2: Bahi-Khata Ledger OCR</b><br>
+                <img src="assets/mobile_step2_ocr.png" alt="Phase 2 Ledger OCR" width="100%">
+            </td>
+        </tr>
+        <tr>
+            <td width="50%" align="center">
+                <b>Phase 3: SMS Transactional Stream</b><br>
+                <img src="assets/mobile_step3_sms.png" alt="Phase 3 SMS Audit" width="100%">
+            </td>
+            <td width="50%" align="center">
+                <b>Phase 4: SLM Credit Scoring Gauge</b><br>
+                <img src="assets/mobile_step4_slm_score.png" alt="Phase 4 SLM Score" width="100%">
+            </td>
+        </tr>
+        <tr>
+            <td width="50%" align="center">
+                <b>Phase 5: W3C Cryptographic Proof</b><br>
+                <img src="assets/mobile_step5_w3c_proof.png" alt="Phase 5 W3C Proof" width="100%">
+            </td>
+            <td width="50%" align="center">
+                <b>Phase 6: Ephemeral RAM Scrub & Sanction</b><br>
+                <img src="assets/mobile_step6_ram_scrub.png" alt="Phase 6 RAM Scrub" width="100%">
+            </td>
+        </tr>
     </table>
+
+    <br>
+
+    <h3>Portal 2: OCEN 4.0 Lender Gateway & Underwriting Console</h3>
+    <p>The bank terminal receives hardware-verified proofs in real-time, displays DPDP privacy differentials, and triggers instant UPI disbursement:</p>
+
+    <table>
+        <tr>
+            <td width="100%" align="center">
+                <b>Live Incoming Proof Stream & Cryptographic Inspector</b><br>
+                <img src="assets/lender_portal_console.png" alt="Lender Portal Underwriting Console" width="100%">
+            </td>
+        </tr>
+        <tr>
+            <td width="100%" align="center">
+                <b>1-Click Instant UPI Loan Disbursement Confirmation</b><br>
+                <img src="assets/lender_portal_disbursed.png" alt="1-Click UPI Disbursement" width="100%">
+            </td>
+        </tr>
+        <tr>
+            <td width="100%" align="center">
+                <b>Bahi-Khata Demo Kit & Hackathon Pitch Script</b><br>
+                <img src="assets/demo_kit_ledgers.png" alt="Bahi-Khata Demo Kit" width="100%">
+            </td>
+        </tr>
+    </table>
+
+    <br>
 
     <h3>Pre-configured Merchant Archetypes</h3>
     <ul>
