@@ -15,9 +15,6 @@
     <a href="#ins">- How to Use & Execution</a><br>
     <a href="#preview">- Preview & Demo Workflows</a><br>
     <a href="#privacy">- DPDP Act 2023 & Cryptographic Guarantees</a><br>
-    <a href="#Team">- Team</a><br>
-    <a href="#cont">- Contribution</a><br>
-    <a href="#improve">- Future Improvements</a><br>
 </div>
 <hr>
 
@@ -199,37 +196,5 @@ node testAllMerchants.js
         <li><b>Differential Privacy Protection:</b> Legacy scrapers extract up to 14.8 MB of unencrypted personal data per loan application; EdgeScore transmits only a single ~2.16 KB canonical cryptographic proof.</li>
         <li><b>Hardware-Rooted Trust:</b> Tamper-proof Android Keystore StrongBox TEE prevents signature spoofing even on compromised user-space operating systems.</li>
         <li><b>DPDP Act 2023 Compliance:</b> Full adherence to data minimization, purpose limitation, and storage limitation principles under Indian data protection law.</li>
-    </ul>
-</div>
-<hr>
-
-<div id="Team">
-    <h2>Team</h2>
-    <ul>
-        <li><b>Sathwik</b> — Lead Architecture, Cryptographic Engineering & Full-Stack Development</li>
-    </ul>
-</div>
-<hr>
-
-<div id="cont">
-    <h2>Contribution</h2>
-    <p>Contributions are welcomed! Please follow these guidelines:</p>
-    <ol>
-        <li>Fork the repository.</li>
-        <li>Create your feature branch (<code>git checkout -b feature/AmazingFeature</code>).</li>
-        <li>Commit your changes (<code>git commit -m 'feat: Add some AmazingFeature'</code>).</li>
-        <li>Push to the branch (<code>git push origin feature/AmazingFeature</code>).</li>
-        <li>Open a Pull Request.</li>
-    </ol>
-</div>
-<hr>
-
-<div id="improve">
-    <h2>Improvements & Future Roadmap</h2>
-    <ul>
-        <li>[ ] <b>Direct UPI AutoPay NPCI SDK Integration:</b> Direct on-device e-mandate registration via NPCI mobile SDK.</li>
-        <li>[ ] <b>Multilingual Voice Assistant:</b> Voice-guided ledger onboarding in 12 Indian regional languages (Hindi, Tamil, Telugu, Kannada, Marathi, Bengali, etc.).</li>
-        <li>[ ] <b>Multi-Bank OCEN 4.0 Bidding Protocol:</b> Allow competing NBFCs and banks to bid lower interest rates on verified W3C credentials in real-time.</li>
-        <li>[ ] <b>Hardware Token QR Scanner:</b> Instant offline peer-to-peer verification via dynamic encrypted QR codes for field loan officers.</li>
     </ul>
 </div>
